@@ -1,10 +1,12 @@
 import React from 'react';
+import { AppProps } from 'next/app';
+import { ChangeThemeProvider } from '../contexts/ChangeThemeContext';
 
-import '../styles/global.css';
-
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Component {...pageProps} />
+      <ChangeThemeProvider>
+        <Component {...pageProps} />
+      </ChangeThemeProvider>
   );
 }
 

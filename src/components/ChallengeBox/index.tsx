@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 
-import { ChallengesContext } from '../contexts/ChallengesContext';
-import { CountdownContext } from '../contexts/CountdownContext';
+import { ChallengesContext } from '../../contexts/ChallengesContext';
+import { CountdownContext } from '../../contexts/CountdownContext';
 
-import styles from '../styles/components/ChallengeBox.module.css';
+import { Container } from './styles';
 
 export function ChallengeBox() {
    const {
@@ -24,9 +24,9 @@ export function ChallengeBox() {
    }
 
    return (
-      <div className={styles.challengeBoxContainer}>
+      <Container>
          {activeChallenge ? (
-            <div className={styles.challengeActive}>
+            <div className="challengeActive">
                <header>Ganhe {activeChallenge.amount} xp</header>
 
                <main>
@@ -38,14 +38,14 @@ export function ChallengeBox() {
                <footer>
                   <button
                      type="button"
-                     className={styles.challengeFailedButton}
+                     className="challengeFailedButton"
                      onClick={handleChallengeFailed}
                   >
                      Falhei
                   </button>
                   <button
                      type="button"
-                     className={styles.challengeSucceededButton}
+                     className="challengeSucceededButton"
                      onClick={handleChallengeSucceeded}
                   >
                      Completei
@@ -53,7 +53,7 @@ export function ChallengeBox() {
                </footer>
             </div>
          ) : (
-               <div className={styles.challengeNotActive}>
+               <div className="challengeNotActive">
                   <strong>Finalize um ciclo para receber um desafio</strong>
                   <p>
                      <img src="icons/level-up.svg" alt="Level Up" />
@@ -62,6 +62,6 @@ export function ChallengeBox() {
                </div>
             )
          }
-      </div >
+      </Container >
    );
 }

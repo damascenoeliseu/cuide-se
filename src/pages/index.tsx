@@ -1,15 +1,21 @@
+import { useContext } from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
+import { ThemeProvider } from 'styled-components';
 
 import { CompletedChallenges } from "../components/CompletedChallenges";
 import { Countdown } from "../components/Countdown";
 import { ExperienceBar } from "../components/ExperienceBar";
 import { Profile } from "../components/Profile";
 import { ChallengeBox } from "../components/ChallengeBox";
+import { ToggleTheme } from '../components/ToggleTheme';
 
-import styles from '../styles/pages/Home.module.css';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
+import { ChangeThemeContext } from '../contexts/ChangeThemeContext';
+
+import styles from '../styles/pages/Home.module.css';
+import GlobalStyle from '../styles/global';
 
 interface HomeProps {
   level: number;
@@ -18,33 +24,40 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
-    return (
-    <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <div className={styles.container}>
-        <Head>
-          <title>Início | Move.it</title>
-        </Head>
+  const { theme } = useContext(ChangeThemeContext);
 
-        <ExperienceBar />
+  return (
+    <ThemeProvider theme={theme}>
+      <ChallengesProvider
+        level={props.level}
+        currentExperience={props.currentExperience}
+        challengesCompleted={props.challengesCompleted}
+      >
+        <div className={styles.container}>
+          <Head>
+            <title>Início | Move.it</title>
+          </Head>
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
-    </ChallengesProvider>
+          <ToggleTheme />
+
+          <ExperienceBar />
+
+          <CountdownProvider>
+            <section>
+              <div>
+                <Profile />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </CountdownProvider>
+        </div>
+        <GlobalStyle />
+      </ChallengesProvider>
+    </ThemeProvider>
   );
 }
 

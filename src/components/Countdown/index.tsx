@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
-import { CountdownContext } from '../contexts/CountdownContext';
-import styles from '../styles/components/Countdown.module.css';
+import { CountdownContext } from '../../contexts/CountdownContext';
+import { CountdownButton, Container, CountdownButtonActive } from './styles';
 
 export function Countdown() {
    const {
@@ -18,7 +18,7 @@ export function Countdown() {
 
    return (
       <div>
-         <div className={styles.countdownContainer}>
+         <Container>
             <div>
                <span>{minuteLeft}</span>
                <span>{minuteRight}</span>
@@ -30,34 +30,32 @@ export function Countdown() {
                <span>{secondLeft}</span>
                <span>{secondRight}</span>
             </div>
-         </div>
+         </Container>
 
          {hasFinished ? (
-            <button
+            <CountdownButton
                disabled
-               className={styles.countdownButton}
             >
                Ciclo encerrado
                <img src="/icons/check_circle.svg" alt="Check circle"/>
-            </button>
+            </CountdownButton>
          ) : (
                <>
                   {isActive ? (
-                     <button
+                     <CountdownButtonActive
                         type="button"
-                        className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
+                        id="countdownButtonActive"
                         onClick={resetCountdown}
                      >
                         Abandonar ciclo
-                     </button>
+                     </CountdownButtonActive>
                   ) : (
-                        <button
+                        <CountdownButton
                            type="button"
-                           className={styles.countdownButton}
                            onClick={startCountdown}
                         >
                            Iniciar um ciclo
-                        </button>
+                        </CountdownButton>
                      )}
                </>
             )}

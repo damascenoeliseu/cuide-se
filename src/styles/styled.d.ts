@@ -14,6 +14,11 @@ declare module 'styled-components' {
       toggleTheme: string;
       topnavBackground: string;
       challengeBoxBackground: string;
+      challengeBoxHeader: string;
+      countdownButtonBackground: string;
+      countdownButtonBackgroundHover: string,
+      levelUpModalBackground: string;
+      levelUpModalNumber: string;
     }
   }
 }

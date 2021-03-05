@@ -34,6 +34,7 @@ export const Container = styled.div`
    & > span {
       font-size: 6.25rem;
       margin: 0 0.5rem;
+      color: ${(props) => props.theme.colors.title};
    }
 `;
 
@@ -50,7 +51,7 @@ export const CountdownButton = styled.button`
    border: 0;
    border-radius: 5px;
 
-   background: var(--blue);
+   background: ${(props) => props.theme.colors.countdownButtonBackground};
    color: var(--white);
 
    font-size: 1.25rem;
@@ -63,7 +64,7 @@ export const CountdownButton = styled.button`
    }
 
    &:not(:disabled):hover {
-      background: var(--blue-dark);
+      background: ${(props) => props.theme.colors.countdownButtonBackgroundHover};
    }
 
    &:disabled {

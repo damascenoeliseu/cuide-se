@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-   background: var(--white);
+   background: ${props => props.theme.colors.levelUpModalBackground};
    position: relative;
    width: 100%;
    max-width: 400px;
@@ -27,19 +27,19 @@ export const Content = styled.div`
    header {
       background: url('/icons/levelup.svg') no-repeat center;
       background-size: contain;
-      color: var(--blue);
+      color: ${props => props.theme.colors.levelUpModalNumber};
       font-size: 8.75rem;
       font-weight: 600;  
    }
 
    strong {
       font-size: 2.25rem;
-      color: var(--title);
+      color: ${props => props.theme.colors.title};
    }
 
    p {
       font-size: 1.25rem;
-      color: var(--text);
+      color: ${props => props.theme.colors.text};
       margin-top: 0.25rem;
    }
 

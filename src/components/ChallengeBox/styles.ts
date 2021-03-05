@@ -48,7 +48,7 @@ export const Container = styled.div`
    }
 
    .challengeActive header {
-      color: var(--blue);
+      color: ${(props) => props.theme.colors.challengeBoxHeader};
       font-weight: 600;
       font-size: 1.25rem;
       padding: 0 2rem 1.5rem;
@@ -72,7 +72,7 @@ export const Container = styled.div`
    .challengeActive main strong {
       font-size: 2rem;
       font-weight: 600;
-      color: var(--title);
+      color: ${(props) => props.theme.colors.title};
       margin: 1.5rem 0 1rem;
    }
 

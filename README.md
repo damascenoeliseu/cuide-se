@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <a href="#clock3-moveit-project-muscle">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#arrow_forward-getting-started">Getting started</a>
+</p>
 
-## Getting Started
+## :clock3: Move.it Project :muscle:
+Move.it is an application that combines the Pomodoro technique and performing exercises during the break.
 
-First, run the development server:
+The Pomodoro Technique was created by Francesco Cirillo for a more productive way to work and study. The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks. Each interval is known as a pomodoro, from the Italian word for 'tomato', after the tomato-shaped kitchen timer that Cirillo used as a university student. – [Wikipedia]( https://en.wikipedia.org/wiki/Pomodoro_Technique) 
+
+For each interval, the user is challenged. These challenges are exercises that involve the body and the eyes, which are often attacked over time by people who work and study in front of the computer for a long time a day.
+
+<p align="center">
+  <img alt="Move it application" src="https://github.com/damascenoeliseu/moveit_NLW4/blob/master/.github/moveitV1_1.gif"/>
+</p>
+
+**_You can try the app by clicking [here](https://moveit-damascenoeliseu.vercel.app/)._**
+
+
+## :rocket: Technologies
+- [ReactJS](https://reactjs.org)
+- [Next.js](https://nextjs.org/)
+- [styled-components](https://styled-components.com/)
+
+## :arrow_forward: Getting Started
+*I suggest using [Yarn](https://yarnpkg.com/getting-started/install) as package manager.*
 
 ```bash
-npm run dev
-# or
-yarn dev
+# Clone the project for your device
+$ git clone https://github.com/damascenoeliseu/moveit_NLW4.git
+
+# Access the directory
+$ cd moveit_NLW4
+
+# Install the dependencies
+$ yarn
+
+# Run the app
+$ yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## :memo: License
+This project is under the MIT License. See the archive [LICENSE](LICENSE) for more details.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+##
+<p align="center">Developed by Eliseu Damasceno.</p>

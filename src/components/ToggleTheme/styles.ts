@@ -8,9 +8,8 @@ export const Container = styled.div`
    justify-content: flex-end;
    margin-bottom: 2rem;
    color: ${props => props.theme.colors.text};
-   /* background: ${props => props.theme.colors.TopnavBackground}; */
 
-   p {
-      margin-right: 0.5rem;
+   .themeSwitch {
+      margin: 0 0.25rem 0 0.25rem;
    }
 `;

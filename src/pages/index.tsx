@@ -1,7 +1,6 @@
-import { useContext } from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
-import { ThemeProvider } from 'styled-components';
+import { DefaultTheme } from 'styled-components';
 
 import { CompletedChallenges } from "../components/CompletedChallenges";
 import { Countdown } from "../components/Countdown";
@@ -12,7 +11,7 @@ import { ToggleTheme } from '../components/ToggleTheme';
 
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
-import { ChangeThemeContext } from '../contexts/ChangeThemeContext';
+import { ChangeThemeProvider } from '../contexts/ChangeThemeContext';
 
 import styles from '../styles/pages/Home.module.css';
 import GlobalStyle from '../styles/global';
@@ -21,13 +20,12 @@ interface HomeProps {
   level: number;
   currentExperience: number;
   challengesCompleted: number;
+  theme: DefaultTheme;
 }
 
 export default function Home(props: HomeProps) {
-  const { theme } = useContext(ChangeThemeContext);
-
   return (
-    <ThemeProvider theme={theme}>
+    <ChangeThemeProvider theme={props.theme}>
       <ChallengesProvider
         level={props.level}
         currentExperience={props.currentExperience}
@@ -57,18 +55,19 @@ export default function Home(props: HomeProps) {
         </div>
         <GlobalStyle />
       </ChallengesProvider>
-    </ThemeProvider>
+    </ChangeThemeProvider>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { level, currentExperience, challengesCompleted } = context.req.cookies;
+  const { level, currentExperience, challengesCompleted, theme } = context.req.cookies;
 
   return {
     props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
+      level: Number(level ?? 1),
+      currentExperience: Number(currentExperience ?? 0),
+      challengesCompleted: Number(challengesCompleted ?? 0),
+      theme: theme ? JSON.parse(theme) : null,
     }
   }
 }

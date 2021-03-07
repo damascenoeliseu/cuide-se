@@ -12,6 +12,7 @@ import { ToggleTheme } from '../components/ToggleTheme';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { ChangeThemeProvider } from '../contexts/ChangeThemeContext';
+import { SignInProvider } from '../contexts/SignInContext';
 
 import styles from '../styles/pages/Home.module.css';
 import GlobalStyle from '../styles/global';
@@ -25,37 +26,40 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   return (
-    <ChangeThemeProvider theme={props.theme}>
-      <ChallengesProvider
-        level={props.level}
-        currentExperience={props.currentExperience}
-        challengesCompleted={props.challengesCompleted}
-      >
-        <div className={styles.container}>
-          <Head>
-            <title>Início | Move.it</title>
-          </Head>
+    <>
+      <ChangeThemeProvider theme={props.theme}>
+        <ChallengesProvider
+          level={props.level}
+          currentExperience={props.currentExperience}
+          challengesCompleted={props.challengesCompleted}
+        >
+          <div className={styles.container}>
+            <Head>
+              <title>Início | Move.it</title>
+            </Head>
 
-          <ToggleTheme />
+            <ToggleTheme />
 
-          <ExperienceBar />
+            <ExperienceBar />
 
-          <CountdownProvider>
-            <section>
-              <div>
-                <Profile />
-                <CompletedChallenges />
-                <Countdown />
-              </div>
-              <div>
-                <ChallengeBox />
-              </div>
-            </section>
-          </CountdownProvider>
-        </div>
-        <GlobalStyle />
-      </ChallengesProvider>
-    </ChangeThemeProvider>
+            <CountdownProvider>
+              <section>
+                <div>
+                  <Profile />
+                  <CompletedChallenges />
+                  <Countdown />
+                </div>
+                <div>
+                  <ChallengeBox />
+                </div>
+              </section>
+            </CountdownProvider>
+          </div>
+          <GlobalStyle />
+        </ChallengesProvider>
+      </ChangeThemeProvider>
+      <SignInProvider />
+    </>
   );
 }
 

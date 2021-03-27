@@ -13,6 +13,7 @@ export const Container = styled.div`
    left: 0;
    right: 0;
 
+
    display: flex;
    justify-content: center;
    align-items: center;
@@ -32,7 +33,7 @@ export const Content = styled.div`
    box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
 
    text-align: center;
-   color: #666666;
+   color: var(--text);
 
    h1 {
       font-size: 2rem;
@@ -55,7 +56,7 @@ export const Content = styled.div`
 
 export const Form = styled.form<FormProps>`
    max-width: 300px;
-   background: #fff;
+   background: var(--white);
    padding: 0.3125rem;
    display: flex;
    justify-content: center;
@@ -70,7 +71,7 @@ export const Form = styled.form<FormProps>`
       border: 0;
       border-radius: 5px;
       color: #a3a3a3;
-      border: 2px solid #fff;
+      border: 2px solid var(--white);
       
       ${props =>
       props.hasError &&
@@ -86,10 +87,10 @@ export const Form = styled.form<FormProps>`
    button {
       width: 3rem;
       height: 3rem;
-      background: #04d361;
+      background: var(--green);
       border-radius: 5px;
       border: 0;
-      color: #fff;
+      color: var(--white);
       font-weight: bold;
       transition: background-color 0.2s;
       font-size: 0px;

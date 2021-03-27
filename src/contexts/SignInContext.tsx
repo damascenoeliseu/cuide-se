@@ -1,27 +1,56 @@
-import { createContext, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
+import { DefaultTheme } from 'styled-components';
 
-import { UsernameModal } from '../components/UsernameModal';
+export interface GitHubUser {
+   userData: {
+      login: string;
+      avatar_url: string;
+      name: string;
+   }
+   level: number;
+   currentExperience: number;
+   challengesCompleted: number;
+}
+
+interface SignInProviderProps {
+   children: ReactNode;
+}
 
 interface SignInContextData {
-   closeUsernameModal: () => void;
+   signedInUser: (user: GitHubUser) => void;
+   loadlProps: (gitHubUser: GitHubUser[], theme: DefaultTheme) => void;
+   user: GitHubUser;
+   gitHubUsers: GitHubUser[];
+   theme: DefaultTheme;
 }
 
 export const SignInContext = createContext({} as SignInContextData);
 
-export function SignInProvider() {
-   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(true);
+export function SignInProvider({ children }: SignInProviderProps) {
+   const [user, setUser] = useState<GitHubUser>();
+   const [gitHubUsers, setGitHubUsers] = useState<GitHubUser[]>();
+   const [theme, setTheme] = useState<DefaultTheme>();
 
-   function closeUsernameModal() {
-      setIsUsernameModalOpen(false);
+   function signedInUser(user: GitHubUser) {
+      setUser(user);
+   }
+
+   function loadlProps(gitHubUsers: GitHubUser[], theme: DefaultTheme) {
+      setGitHubUsers(gitHubUsers);
+      setTheme(theme);
    }
 
    return (
       <SignInContext.Provider
          value={{
-            closeUsernameModal
+            signedInUser,
+            loadlProps,
+            user,
+            gitHubUsers,
+            theme,
          }}
       >
-         {isUsernameModalOpen && <UsernameModal />}
+         { children}
       </SignInContext.Provider>
    );
 

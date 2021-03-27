@@ -1,10 +1,12 @@
 import React from 'react';
 import { AppProps } from 'next/app';
+import { SignInProvider } from '../contexts/SignInContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Component {...pageProps} />
+    <SignInProvider>
+      <Component {...pageProps} />
+    </SignInProvider>
   );
 }
-
-export default MyApp
+export default MyApp;

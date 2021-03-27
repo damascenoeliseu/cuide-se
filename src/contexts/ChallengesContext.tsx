@@ -1,15 +1,12 @@
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
+import { GitHubUser, SignInContext } from './SignInContext';
 
 interface ChallengesProviderProps {
    children: ReactNode;
-   level: number;
-   currentExperience: number;
-   challengesCompleted: number;
-
 }
 
 interface Challenge {
@@ -19,9 +16,9 @@ interface Challenge {
 }
 
 interface ChallengesContextData {
-   level: number;
-   currentExperience: number;
-   experienceToNextLevel: number;
+   level: number,
+   currentExperience: number,
+   experienceToNextLevel: number,
    challengesCompleted: number;
    activeChallenge: Challenge;
    levelUp: () => void;
@@ -33,10 +30,13 @@ interface ChallengesContextData {
 
 export const ChallengesContext = createContext({} as ChallengesContextData);
 
-export function ChallengesProvider({ children, ...rest }: ChallengesProviderProps) {
-   const [level, setLevel] = useState(rest.level);
-   const [currentExperience, setCurrentExperience] = useState(rest.currentExperience);
-   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted);
+export function ChallengesProvider({ children }: ChallengesProviderProps) {
+   const { user, gitHubUsers } = useContext(SignInContext);
+
+   const [gitHubUser, setGitHubUser] = useState<GitHubUser[]>(gitHubUsers);
+   const [level, setLevel] = useState(user.level);
+   const [currentExperience, setCurrentExperience] = useState(user.currentExperience);
+   const [challengesCompleted, setChallengesCompleted] = useState(user.challengesCompleted);
    const [activeChallenge, setActiveChallenge] = useState(null);
    const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
 
@@ -47,9 +47,32 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
    }, []);
 
    useEffect(() => {
-      Cookies.set('level', String(level));
-      Cookies.set('currentExperience', String(currentExperience));
-      Cookies.set('challengesCompleted', String(challengesCompleted));
+      const foundUser = gitHubUser.find(gHUser => gHUser.userData.login === user.userData.login);
+      if (!foundUser) {
+         setGitHubUser([...gitHubUser, user]);
+      }
+   }, []);
+
+   useEffect(() => {
+      Cookies.set('gitHubUser', JSON.stringify(gitHubUser));
+   }, [gitHubUser]);
+
+   useEffect(() => {
+      if (level !== 1 || challengesCompleted !== 0 || currentExperience !== 0) {
+         const updatedUser = gitHubUser.map(ghUser => {
+            if (ghUser.userData.login === user.userData.login) {
+               return {
+                  ...ghUser,
+                  level,
+                  currentExperience,
+                  challengesCompleted,
+               };
+            } else {
+               return ghUser;
+            }
+         });
+         setGitHubUser(updatedUser);
+      }
    }, [level, currentExperience, challengesCompleted]);
 
    function levelUp() {
@@ -57,7 +80,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
       setIsLevelUpModalOpen(true);
    }
 
-   function closeLevelUpModal(){
+   function closeLevelUpModal() {
       setIsLevelUpModalOpen(false);
    }
 

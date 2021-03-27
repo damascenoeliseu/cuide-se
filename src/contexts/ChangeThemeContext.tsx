@@ -20,7 +20,7 @@ export function ChangeThemeProvider({ children, ...rest }: ChangeThemeProviderPr
    const [theme, setTheme] = useState<DefaultTheme>(rest.theme ?? light);
 
    function toggleTheme() {
-      setTheme(theme.title === 'light' ? dark : light)
+      setTheme(theme.title === 'light' ? dark : light);
    }
 
    useEffect(() => {

@@ -1,16 +1,19 @@
 import { useContext } from 'react';
 
 import { ChallengesContext } from '../../contexts/ChallengesContext';
+import { SignInContext } from '../../contexts/SignInContext';
+
 import { Container } from './styles';
 
 export function Profile() {
-   const { level } = useContext(ChallengesContext);
+   const {level} = useContext(ChallengesContext);
+   const { user } = useContext(SignInContext);
 
    return (
       <Container>
-         <img src="https://github.com/damascenoeliseu.png" alt="Eliseu Damasceno" />
+         <img src={user.userData.avatar_url} alt="Eliseu Damasceno" />
          <div>
-            <strong>Eliseu Damasceno</strong>
+            <strong>{user.userData.name}</strong>
             <p>
                <img src="icons/level.svg" alt="Level" />
                Level {level}

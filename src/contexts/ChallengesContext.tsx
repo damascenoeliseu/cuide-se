@@ -34,9 +34,9 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
    const { user, gitHubUsers } = useContext(SignInContext);
 
    const [gitHubUser, setGitHubUser] = useState<GitHubUser[]>(gitHubUsers);
-   const [level, setLevel] = useState(user.level);
-   const [currentExperience, setCurrentExperience] = useState(user.currentExperience);
-   const [challengesCompleted, setChallengesCompleted] = useState(user.challengesCompleted);
+   const [level, setLevel] = useState(user && user.level);
+   const [currentExperience, setCurrentExperience] = useState(user && user.currentExperience);
+   const [challengesCompleted, setChallengesCompleted] = useState(user && user.challengesCompleted);
    const [activeChallenge, setActiveChallenge] = useState(null);
    const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
 

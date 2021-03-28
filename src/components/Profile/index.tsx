@@ -6,14 +6,14 @@ import { SignInContext } from '../../contexts/SignInContext';
 import { Container } from './styles';
 
 export function Profile() {
-   const {level} = useContext(ChallengesContext);
+   const { level } = useContext(ChallengesContext);
    const { user } = useContext(SignInContext);
 
    return (
       <Container>
-         <img src={user.userData.avatar_url} alt="Eliseu Damasceno" />
+         <img src={user && user.userData.avatar_url} alt="Eliseu Damasceno" />
          <div>
-            <strong>{user.userData.name}</strong>
+            <strong>{user && user.userData.name}</strong>
             <p>
                <img src="icons/level.svg" alt="Level" />
                Level {level}

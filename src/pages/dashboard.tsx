@@ -26,7 +26,7 @@ export default function Dashboard() {
         <ChallengesProvider>
           <Container>
             <Head>
-              <title>{`${user ? user.userData.login : ''} | Move.it`}</title>
+              <title>{`${user ? user.userData.login : ''} | Cuide-se`}</title>
             </Head>
 
             <ToggleTheme />

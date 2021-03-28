@@ -66,7 +66,7 @@ export default function SignIn(props: SignInProps) {
    return (
       <ChangeThemeProvider theme={props.theme}>
          <Head>
-            <title>Início | Move.it</title>
+            <title>Início | Cuide-se</title>
          </Head>
          <Container>
             <Content>
